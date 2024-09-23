@@ -1,0 +1,27 @@
+/*
+Project : Martian
+FileName : favouriteModel.js
+Author : Emmark Lab
+File Created : 21/07/2021
+CopyRights : Emmark Lab
+Purpose : This is the file which used to define favourite schema that will store and reterive item favourite information.
+*/
+
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate-v2');
+var uniqueValidator = require('mongoose-unique-validator');
+var config = require('../../../helper/config')
+const Schema = mongoose.Schema;
+
+var followerSchema = mongoose.Schema({
+    user_id: { type: Schema.Types.ObjectId, ref: 'users' },
+    created_date: {
+        type: Date,
+        default: Date.now
+    },
+});
+
+followerSchema.plugin(uniqueValidator);
+followerSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('follower', followerSchema,config.db.prefix+'follower');

@@ -1,0 +1,54 @@
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+  <div id="top"></div>
+  <!-- section begin -->
+  <section id="subheader">
+    <div class="center-y relative text-center">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-12 text-center">
+                  <h1>My collection</h1>
+                  <p>Create, curate, and manage collections of unique NFTs to share and sell.</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section close -->
+ <div class="container">
+  <div class="row">
+       <div class="pageHeader">
+            <h2 style="margin: 10px;">Begin the Journey</h2>
+            <button class="btn-main" routerLink="/collection/add" style="margin: 10px;">Create Collection</button>
+       </div>
+       <div class="card-body-filter">
+         <div class="row">
+             <div class="col-sm-12">
+               <div>
+                 <input type="text" class="form-control" id="name" placeholder="Search" [(ngModel)]="searchInput" (keyup.enter)="searchAction()">
+               </div>
+             </div>
+           </div><!--/.row-->
+           <div class="card-body-filter-action">
+             <button type="submit" class="btn-main" (click)="searchAction()"><i class="fa fa-search"></i>Search</button>
+             <button type="submit" class="btn-main" (click)="resetAction()"><i class="fa fa-refresh"></i>Reset</button>
+           </div>
+       </div>
+       <div class="pageContent" infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onNextPage()">
+          <app-collectionskeleton *ngIf="loading"></app-collectionskeleton>
+          <div class="row" *ngIf="!loading && collections.length>0">
+            <div *ngFor="let item of collections" class="col-md-4">
+                <app-collectionitem [collection]="item" (collectionEvent)="collectionEvent($event)"> </app-collectionitem>
+           </div>
+        </div>
+          <app-nodata *ngIf="!loading && collections.length==0" msg="There is no data to display here"></app-nodata>
+       </div>
+
+   </div>
+  </div>
+</div>

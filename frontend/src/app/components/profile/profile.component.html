@@ -1,0 +1,52 @@
+<!-- section begin -->   
+        <div class="topContainer" #topContainer>
+            <div class="profileHeader">
+                <div class="profileCover">
+                    <img [src]="mediaBase+'/images/cover/'+profile_cover">
+                    <div class="editAction" *ngIf="ownProfile">
+                        <button class="btn-main"><i class="icon-note"></i></button>
+                        <input type="file" ng2FileSelect [uploader]="cover_uploader" (change)="uploadCover()" multiple />
+                    </div>
+                </div>
+                <div class="settingsAction" *ngIf="ownProfile">
+                    <button class="btn-main" routerLink="/settings"><i class="icon-settings"></i></button>
+                </div>
+                <div class="profileAvatar">
+                    <div class="profileAvatarInner">
+                        <img [src]="mediaBase+'/images/user/'+profile_image">
+                        <div class="avatarAction" *ngIf="ownProfile">
+                            <i class="icon-pencil"></i>
+                            <input type="file" ng2FileSelect [uploader]="uploader" (change)="uploadAvatar()" multiple />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profileSubHeader" *ngIf="userInfo!=null">
+                <h3>{{profile_name}} <i *ngIf="userInfo.verified == 'active'" class="fa fa-check"></i></h3>
+                <p (click)="copyAddress()">{{userInfo.metamask_info.id.substring(0,4)}}...{{userInfo.metamask_info.id.substring(userInfo.metamask_info.id.length-4)}}<i class="fa fa-copy"></i></p>
+            </div>
+        </div>
+<!-- section close -->
+    <section aria-label="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="de_tab tab_simple">
+                        <ul class="de_nav">
+                            <li [ngClass]="{'active': type=='collected'}" ><a href="javascript:void(0);" (click)="profileLink('collected')"><span *ngIf="!isToggled">Collected</span></a></li>
+                            <li [ngClass]="{'active': type=='created'}" ><a href="javascript:void(0);" (click)="profileLink('created')"><span *ngIf="!isToggled">Created</span></a></li>
+                            <li [ngClass]="{'active': type=='favorited'}" ><a href="javascript:void(0);" (click)="profileLink('favorited')"><span *ngIf="!isToggled">Favorited</span></a></li>
+                            <li [ngClass]="{'active': type=='activity'}"><a href="javascript:void(0);" (click)="profileLink('activity')" *ngIf="ownProfile"><span *ngIf="!isToggled">Activity</span></a></li>
+                            <li [ngClass]="{'active': type=='offers'}"><a href="javascript:void(0);" (click)="profileLink('offers')" *ngIf="ownProfile"><span *ngIf="!isToggled">Offers</span></a></li>
+                        </ul>
+                        
+                        <div class="de_tab_content" [ngClass]="{'fixedContainer': isFixedSidebar == true && isToggled == false, 'minimizeContainer': isFixedSidebar == true && isToggled == true}">
+                            <router-outlet></router-outlet>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<app-loader *ngIf="spinner"></app-loader>

@@ -1,0 +1,147 @@
+<body class="dark-scheme de-grey">
+  <div id="wrapper">
+          <!-- header begin -->
+      <header class="transparent scroll-dark">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="de-flex sm-pt10">
+                          <div class="de-flex-col">
+                              <div class="de-flex-col">
+                                  <!-- logo begin -->
+                                  <div id="logo">
+                                      <a href="" routerLink="/">
+                                          <img alt="" src="assets/images/logo-3.png" />
+                                      </a>
+                                  </div>
+                                  <!-- logo close -->
+                              </div>
+                          </div>
+                          <div class="de-flex-col header-col-mid">
+                              <!-- mainmenu begin -->
+                              <ul id="mainmenu">
+                                  <li [ngClass]="{'active': current_page == ''}">
+                                      <a routerLink="/" href="javascript:void(0)">Home<span></span></a>
+                                  </li>
+                                  <li [ngClass]="{'active': current_page == 'marketplace'}">
+                                      <a routerLink="/marketplace" href="javascript:void(0)">Marketplace<span></span></a>
+                                  </li>                                    
+                                  <li [ngClass]="{'active': current_page == 'stats'}">
+                                      <a routerLink="/stats" href="javascript:void(0)">Stats<span></span></a>
+                                  </li>
+                                  <li [ngClass]="{'active': current_page == 'login'}" *ngIf="user!=null">
+                                    <a *ngIf="user.first_name.length>0" style="margin: 10px;" class="btn-main btn-wallet">{{user.first_name}} {{user.last_name}}<span></span></a>
+                                    <a *ngIf="user.first_name.length==0" style="margin: 10px;" class="btn-main btn-wallet">{{user.username}}<span></span></a>
+                                    <ul>
+                                        <li><a href="javascript:void(0)" [routerLink]="'/profile/'+user.user_id+'/collected'">My Profile</a></li>
+                                        <li><a href="javascript:void(0)" *ngIf="user.verified!='active'">Get verified</a></li>
+                                        <li><a href="javascript:void(0)" [routerLink]="'/collection/mycollection'">My Collection</a></li>
+                                        <li><a href="javascript:void(0)" [routerLink]="'/profile/'+user.user_id+'/favorited'">My Favourites</a></li>
+                                        <li><a href="javascript:void(0)" (click)="logoutAction()">Logout</a></li>
+                                    </ul>
+                                 </li>
+                                 <div class="link" [ngClass]="{'active': current_page == 'login'}" *ngIf="user!=null">
+                                  <li><a href="javascript:void(0)" [routerLink]="'/profile/'+user.user_id+'/collected'">My Profile</a></li>
+                                  <li><a href="javascript:void(0)" [routerLink]="'/collection/mycollection'">My Collection</a></li>
+                                  <li><a href="javascript:void(0)" [routerLink]="'/profile/'+user.user_id+'/favorited'">My Favourites</a></li>
+                                  <li><a href="javascript:void(0)" (click)="logoutAction()">Logout</a></li>
+                                </div>
+                              </ul>
+                              <!-- mainmenu close -->
+                              <div class="menu_side_area">
+                                <a [ngClass]="{'active': current_page == 'login'}" *ngIf="user==null" (click)="connectWalletAction()" class="btn-main btn-wallet"><i class="fa fa-google-wallet"></i><span>Connect Wallet</span></a>
+                                  <span id="menu-btn"></span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <!-- header close -->
+<router-outlet></router-outlet>
+
+<a href="#" id="back-to-top"></a>
+
+<!-- footer begin -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-1">
+              <div class="widget">
+                  <h5>Marketplace</h5>
+                  <ul>
+                      <li><a routerLink="/marketplace" href="javascript:void(0)">All NFTs</a></li>
+                      <li *ngFor="let category of categories"><a [routerLink]="['/marketplace']" [queryParams]="{category_id: category._id}">{{category.title}}</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-1">
+              <div class="widget">
+                  <h5>Resources</h5>
+                  <ul>
+                      <li><a href="http://Bettermentdigital.co ">Website</a></li>
+                      <li><a href="#">Partners</a></li>
+                      <li><a href="#">Suggestions</a></li>
+                      <li><a href="https://discord.gg/HsGa2yS92Y ">Discord</a></li>
+                      <li><a href="#">Docs</a></li>
+                      <li><a href="#">Newsletter</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-1">
+              <div class="widget">
+                  <h5>Community</h5>
+                  <ul>
+                      <li><a href="https://t.me/bettermentdigitl_group">Community</a></li>
+                      <li><a href="#">Documentation</a></li>
+                      <li><a href="#">Brand NFTs</a></li>
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Forum</a></li>
+                      <li><a href="#">Mailing List</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-1">
+              <div class="widget">
+                  <h5>Newsletter</h5>
+                  <p>Signup for our newsletter to get the latest news in your inbox.</p>
+                  <form action="blank.php" class="row form-dark" id="form_subscribe" method="post" name="form_subscribe">
+                      <div class="col text-center">
+                          <input class="form-control" id="txt_subscribe" name="txt_subscribe" placeholder="enter your email" type="text" /> <a href="#" id="btn-subscribe"><i class="arrow_right bg-color-secondary"></i></a>
+                          <div class="clearfix"></div>
+                      </div>
+                  </form>
+                  <div class="spacer-10"></div>
+                  <small>Your email is safe with us. We don't spam.</small>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="subfooter">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="de-flex">
+                      <div class="de-flex-col">
+                          <a href="">
+                              <span class="copy">&copy; Copyright 2022 - Betterment Digital by Emmark Labs</span>
+                          </a>
+                      </div>
+                      <div class="de-flex-col">
+                          <div class="social-icons">
+                              <a href="https://www.facebook.com/Betterment.Digital/"><i class="fa fa-facebook fa-lg"></i></a>
+                              <a href="https://twitter.com/Bettermnt_Digt"><i class="fa fa-twitter fa-lg"></i></a>
+                              <a href="https://www.linkedin.com/in/musafau-y-9831b7184"><i class="fa fa-linkedin fa-lg"></i></a>
+                              <a href="https://www.instagram.com/betterment_digital/"><i class="fa fa-instagram fa-lg"></i></a>
+                              <a href="https://t.me/bettermentdigitl_group"><i class="fa fa-telegram fa-lg"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+</div>
+</body>

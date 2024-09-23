@@ -1,0 +1,109 @@
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    
+    <!-- section begin -->
+    <section id="subheader">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-12 text-center">
+                            <h1>Create Collection</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- section close -->
+    
+
+    <!-- section begin -->
+    <section aria-label="section">
+        <div class="container">
+            <div class="row wow fadeIn">
+                <div class="col-lg-7 offset-lg-1">
+                    <form class="form-border" [formGroup]="collectionForm" (ngSubmit)="onSubmit(collectionForm)">
+                        <div class="field-set">
+                            <h5>Collection Name</h5>
+                            <input type="text" class="form-control" placeholder="Enter Collection Name e.g. Crypto Funk" formControlName="name" required>
+
+                            <div class="spacer-20"></div>
+
+                            <h5>Description</h5>
+                            <textarea data-autoresize class="form-control" placeholder="Enter Description" formControlName="description"></textarea>
+
+                            <div class="spacer-20"></div>
+
+                            <h5>Royalties</h5>
+                            <input type="text" class="form-control" placeholder="Suggested: 0, 10%, 20%, 30%" formControlName="royalties" required>
+                            <div class="spacer-40"></div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <h5 for="email">Collection Logo</h5>
+                                    <div class="p-info">This image will also be used for navigation. 350 x 350 recommended.</div>
+                                    <div class="preview_empty_container" *ngIf="collection_logo == ''">
+                                        <div class="preview_empty_container_img">
+                                            <i class="cil-image"></i>
+                                        </div>
+                                        <p>No Logo Selected</p>
+                                        <div class="uploader_btn_container">
+                                            <button mat-menu-item class="btn-main" type="button">
+                                                <i class="cil-image-plus"></i>
+                                                <span>Select Image</span>
+                                                <input type="file" ng2FileSelect [uploader]="logouploader" (change)="uploadLogo()" single />
+                                            </button>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="image_preview" *ngIf="collection_logo != ''">
+                                        <img [src]="mediaBase + '/images/collection/logo/' + collection_logo" />
+                                        <button class="image_preview_close" (click)="deleteLogo()">
+                                            remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <h5 for="email">Collection Banner</h5>
+                                    <div class="p-info">This image will appear at the top of your collection page. Avoid including too much text in this banner image, as the dimensions change on different devices. 1400 x 400 recommended.</div>
+                                    <div class="preview_empty_container" *ngIf="collection_banner == ''">
+                                        <div class="preview_empty_container_img">
+                                            <i class="cil-image"></i>
+                                        </div>
+                                        <p>No Banner Selected</p>
+                                        <div class="uploader_btn_container">
+                                            <button mat-menu-item class="btn-main" type="button">
+                                                <i class="cil-image-plus"></i>
+                                                <span>Select Image</span>
+                                                <input type="file" ng2FileSelect [uploader]="banneruploader" (change)="uploadBanner()" signle />
+                                            </button>
+    
+                                        </div>
+                                    </div>
+                                    <div class="image_preview" *ngIf="collection_banner != ''">
+                                        <img [src]="mediaBase + '/images/collection/banner/' + collection_banner" />
+                                        <button class="image_preview_close" (click)="deleteBanner()">
+                                            remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="spacer-single"></div>
+
+                            <input type="submit" class="btn-main" [value]="button_title" />
+                            <div class="spacer-single"></div>
+                        </div>
+                    </form>
+                </div>                                       
+            </div>
+        </div>
+    </section>
+
+</div>
+<!-- content close -->
+<app-loader *ngIf="spinner"></app-loader>

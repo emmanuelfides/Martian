@@ -1,0 +1,46 @@
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    
+    <!-- section begin -->
+    <section id="subheader">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-md-12 text-center">
+                            <h1>Settings Menu</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- section close -->
+
+    <!-- section begin -->
+    <section id="section-main" aria-label="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="de_tab tab_simple">
+                    
+                        <ul class="de_nav">
+                            <li [ngClass]="{'active': type=='general'}" class="active"><a href="javascript:void(0);" routerLink="/settings/general"><i class="fa fa-cogs"></i><span *ngIf="!isToggled">General</span></a></li>
+                            <li [ngClass]="{'active': type=='changepassword'}"><a href="javascript:void(0);" routerLink="/settings/changepassword"><i class="fa fa-lock"></i><span *ngIf="!isToggled">Update Password</span></a></li>
+                        </ul>
+
+                        <div class="de_tab_content" [ngClass]="{'fixedContainer': isToggled == false, 'minimizeContainer': isToggled == true}">                            
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+</div>
+<!-- content close -->

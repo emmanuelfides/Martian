@@ -1,0 +1,91 @@
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+    <section id="section-hero" aria-label="section" class="pt20 pb20 vh-100" style="background-image: url(assets/images/background/7.jpg) !important;">
+        <div class="v-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="spacer-single"></div>
+                        <h6 class="wow fadeInUp" data-wow-delay=".5s"><span class="text-uppercase id-color-2">Betterment Digital</span></h6>
+                        <div class="spacer-10"></div>
+                        <h1 class="wow fadeInUp" data-wow-delay=".75s">Discover rare <span class="id-color-2">NFTs</span> by world class artists</h1>
+                        <p class="wow fadeInUp lead" data-wow-delay="1s">
+                        Unit of data stored on a digital ledger, called a blockchain, that certifies a digital asset to be unique and therefore not interchangeable</p>
+                        <div class="spacer-10"></div>
+                        <a href="javascript:void(0)" routerLink="/marketplace" class="btn-main wow fadeInUp lead" style="margin: 5px;" data-wow-delay="1.25s">Explore</a>
+                        <a href="javascript:void(0)" (click)="openCreate()" class="btn-main wow fadeInUp lead" style="margin: 5px;" data-wow-delay="1.25s">Create</a>
+                        <div class="mb-sm-30"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-collections" class="pt30 pb30">
+        <div class="container">
+
+                    <div class="spacer-single"></div>
+                    
+                    <div class="row wow fadeIn"> 
+                        <div class="col-lg-12">
+                            <h2 class="style-2">New Items</h2>
+                        </div>
+               
+                        <!-- nft item begin -->
+                        <app-itemskeleton *ngIf="loading"></app-itemskeleton>
+                        <div class="row" *ngIf="!loading && collectionItems.length>0">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of collectionItems">
+                                <app-item [item]="item" (itemEvent)="itemEvent($event)"> </app-item>
+                            </div>
+                        </div>
+
+                    </div>
+
+                        <div class="spacer-double"></div>
+                </div>
+    </section>
+
+    <section id="section-text" class="no-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="style-2">Create and Sell Now</h2>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-sm-30">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="wow fadeInUp bg-color-2 i-boxed fa fa-google-wallet"></i>
+                        <div class="text">
+                            <h4 class="wow fadeInUp">Set up your wallet</h4>
+                            <p class="wow fadeInUp" data-wow-delay=".25s">Once you’ve set up your wallet of choice, connect it to Betterment Digital by clicking the wallet icon in the top right corner.</p>
+                        </div>
+                        <i class="wm icon_wallet"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-sm-30">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="wow fadeInUp bg-color-2 i-boxed fa fa-cloud-upload"></i>
+                        <div class="text">
+                            <h4 class="wow fadeInUp">Add your NFT's</h4>
+                            <p class="wow fadeInUp" data-wow-delay=".25s">Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats, and unlockable content.</p>
+                        </div>
+                        <i class="wm icon_cloud-upload_alt"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-sm-30">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="wow fadeInUp bg-color-2 i-boxed fa fa-shopping-cart"></i>
+                        <div class="text">
+                            <h4 class="wow fadeInUp">Sell your NFT's</h4>
+                            <p class="wow fadeInUp" data-wow-delay=".25s">Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs, and we help you sell them!</p>
+                        </div>
+                        <i class="wm icon_tags_alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</div>
+<!-- content close -->

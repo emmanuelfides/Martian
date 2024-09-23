@@ -1,0 +1,7 @@
+.nft__item_action{
+    color: #ff343f;
+}
+a i{
+    background: blue !important;
+}
+.collectionItemContent .moreAction{ position: absolute; right: 0; top: 0;}
